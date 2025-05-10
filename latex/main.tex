@@ -1,0 +1,722 @@
+\documentclass[12pt,a4paper]{article}
+
+% Language and encoding
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+% comment
+\usepackage{comment}
+
+% Page layout
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Fonts and formatting
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+
+% Graphics and tables
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{caption} % Added for captions
+\usepackage{float}   % Improved float handling
+\usepackage{makecell}
+
+% Math and symbols
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+
+% Hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+    pdftitle={Usemore Soap Company Case Study},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={}
+}
+
+% Custom commands
+\newcommand{\cwt}{\text{cwt}}
+\newcommand{\dollar}{\$}
+
+\captionsetup{labelfont=bf, font=small, labelsep=colon} % Optional: caption style
+
+% Title and author
+\title{Usemore Soap Company: A Warehouse Location Case Study}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+\section{Enunciado}
+
+The Usemore Soap Company produces a line of cleaning compounds, used mainly for industrial and institutional purposes.
+Typical products include general cleaning compounds, dishwasher powders, rinse agents, hand soaps, motor vehicle washing compounds, and cleaning products for the food industry.
+The product line is composed of more than 200 products and nearly 800 individual product items.
+Package sizes range from 18-pound cases to large metal drums weighing 550 pounds.
+
+Sales are generated throughout the 48 contiguous United States, with additional sales in Hawaii, Alaska, and Puerto Rico.
+Customers typically purchase in quantities less than 10,000 pounds, that is, less-than-truckload (LTL) quantities.
+A few customers purchase in truckload and bulk quantities.
+Annual LTL sales, which pass through the warehouses, are running at the 150 million pound level.
+Volume sales, which are served directly from plants, add another 75 million pounds.
+These sales represent approximately \$160 million in revenue.
+
+The primary marketing effort comes from a direct selling force operating under the incentive of a liberal sales commission structure.
+Salespeople look upon themselves as individual entrepreneurs and have a great deal of autonomy within the company.
+This marketing strategy has generally proved successful for the company, as the company has often been referred to as one of the most profitable divisions within its widely
+diversified parent organization.
+
+In spite of the high profitability, company management is concerned about the costs of producing and distributing the product line to maintain its competitive edge.
+Growth and shifting demand patterns are straining the production capacity of the four existing plants.
+In addition, changing costs of distribution, as well as the fact that the distribution network has not been studied in 12 years, raise questions about the proper placement of the warehouses.
+What follows is a summary of the problem conditions being faced by management.
+You are to suggest an improved distribution network that meets the stated customer service policy and minimizes total network production-distribution costs.
+
+\subsection{BACKGROUND}
+
+The current distribution network consists of four product line plants located
+at Covington, Kentucky, New York, New York, Arlington, Texas, and Long Beach, California.
+The plants are currently producing product for their low-volume customers at the level of 595,102 cwt., 390,876 cwt., 249, 662 cwt., and 241, 386 cwt., respectively.
+This output is shipped from plants either to field warehouses in the distribution network or to customers within the local areas of the plants.
+In the latter case, plants serve as field warehouses as well as producing centers.
+
+Warehousing takes place at 18 public warehouses and at the four plant locations, as shown in Table \ref{tab:tabela1-enunciado}.
+These warehouses are dispersed in such a fashion that the majority of the customers are within a one-day delivery time frame of a stocking point; that is, approximately 300 miles.
+Except for the plants serving as warehouses, the warehouses are supplied in full truckload quantities.
+Less-than-truckload shipments serve customers.
+Customer order processing takes place at each warehouse location.
+In addition, two potential plant sites are being considered at Chicago, Illinois, and Memphis, Tennessee.
+
+\begin{table}[!h]
+    \caption{Current Plant and Public Warehouse Locations}
+    \centering
+    \label{tab:tabela1-enunciado}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    No & Location (city) & Location (state) \\
+    \hline
+    1  & Covington       & KY               \\
+    2  & New York        & NY               \\
+    3  & Arlington       & TX               \\
+    4  & Long Beach      & CA               \\
+    5  & Atlanta         & GA               \\
+    6  & Boston          & MA               \\
+    7  & Buffalo         & NY               \\
+    8  & Chicago         & IL               \\
+    9  & Cleveland       & OH               \\
+    10 & Devenport       & IA               \\
+    11 & Detroit         & MI               \\
+    12 & Grand Rapids    & MI               \\
+    13 & Greensboro      & NC               \\
+    14 & Kansas City     & KS               \\
+    15 & Baltimore       & MD               \\
+    16 & Memphis         & TN               \\
+    17 & Milwaukee       & WI               \\
+    18 & Orlando         & SL               \\
+    19 & Pittsburgh      & PA               \\
+    20 & Portland        & OR               \\
+    21 & W Sacramento    & CA               \\
+    22 & W Chester       & PA               \\
+    \hline
+\end{tabular}
+\end{table}
+
+
+
+Additional warehouse sites are considered at the locations shown in Table \ref{tab:tabela2-enunciado}.
+
+\begin{table}[!h]
+    \centering
+    \caption{Possible Public Warehouse Locations}
+    \label{tab:tabela2-enunciado}
+    \begin{tabular}{|l|l|l|}
+    \hline
+    No & Location (city) & Location (state) \\
+    \hline
+    23 & Albuquerque     & NM               \\
+    24 & Biling          & MT               \\
+    25 & Denver          & CO               \\
+    26 & El Paso         & TX               \\
+    27 & Camp Hill       & PA               \\
+    28 & Houston         & TX               \\
+    29 & Las Vegas       & NV               \\
+    30 & Minneapolis     & MN               \\
+    31 & New Orleans     & LA               \\
+    32 & Phoenix         & AZ               \\
+    33 & Richmond        & VA               \\
+    34 & St Louis        & MO               \\
+    35 & Salt Lake City  & UT               \\
+    36 & San Antonio     & TX               \\
+    37 & Seattle         & WA               \\
+    38 & Spokane         & WA               \\
+    39 & San Francisco   & CA               \\
+    40 & Indianapolis    & IN               \\
+    41 & Louisville      & KY               \\
+    42 & Columbus        & OH               \\
+    43 & New York        & NY               \\
+    44 & Hartford        & CT               \\
+    45 & Miami           & FL               \\
+    46 & Mobile          & AL               \\
+    47 & Memphis *       & TN               \\
+    48 & Chicago *       & IL               \\
+    \hline
+\end{tabular}
+\end{table}
+
+
+Potential warehouse sites are made based on sales personnel's suggestions, favorable warehousing rates, good warehousing service availability, proximity to demand concentrations, and filling out of the distribution network.
+Of the existing and potential warehouse sites, it is hoped that an improved mix of warehouses can be found.
+In addition, plant expansion, either at existing sites or at new sites, will be needed to meet future demand projections.
+Specifically, answers to the following questions are sought:
+
+\begin{enumerate}
+    \begin{singlespace}
+        \item How many warehouses should be operated now and in the future?
+        \item Where should they be located?
+        \item Which customers and associated demand should be assigned to each warehouse and plant?
+        \item Which warehouses should be supplied from each plant?
+        \item Should production capacity be expanded? When, where, and by how much?
+        \item What level of customer service should be provided?
+    \end{singlespace}
+\end{enumerate}
+
+\subsection{SALES DATA}
+
+Manufacturing of soap liquids and powders is an uncomplicated duplicated process, which contributes to substantial competition in the marketplace.
+The undifferentiated nature of soap products results in keen competition in both price and service.
+Customer service is of particular concern because it is directly affected by the choice of warehouses.
+No specific dollar figure can be placed on the total value of good distribution service, as it depends on customer attitudes about service and resulting patronage.
+The general feeling in the company is that service should be maintained at a high level so as not to jeopardize sales.
+A ``high'' level of service is taken to mean delivery time of 24 to 48 hours or less.
+This generally places customers somewhere between 300 and 600 miles of warehouses.
+Annual sales for the products that move through the warehousing network are 147 million pounds for annual revenue of slightly more than \$100 million.
+Sales are distributed similarly to population centers with an average profit margin of 20 percent.
+Figure \ref{fig:salesTerritories} shows the six major sales territories, with sales volume in pounds by state.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/enunciado/figura01.png}
+    \caption{Usemore Soap Company Annual Sales in Cwt. by State, with Major Sales Districts Defined}\label{fig:salesTerritories}
+\end{figure}
+
+
+The company has more than 70,000 individual customer accounts, and these are aggregated into 191 active demand centers.
+A demand center is a grouping of zip code areas into a zip sectional center as the focus of the collected demand.
+These demand centers, along with how they are currently being served, are given in Table \ref{tab:tab3-enunciado}.
+In addition, the sales territory in which the demand center is grouped is shown.
+The five-year plan shows volume growth throughout the United States.
+This growth will not be uniform due to population and business migration patterns, competition, and varying promotional efforts.
+The changes in volume compared with current volume levels are projected by sales territory as follows (Table \ref{tab:tabelaa-enunciado}):
+
+\begin{table}[!h]
+    \centering
+    \caption{Sales Territory Growth Factors} \label{tab:tabelaa-enunciado}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Region No.} & \textbf{Sales Territory} & \textbf{5-Year Growth Factor} \\
+    \hline
+    1                   & Northeast                & 1,3                           \\
+    2                   & Southeast                & 1,45                          \\
+    3                   & Midwest                  & 1,25                          \\
+    4                   & Northwest                & 1,2                           \\
+    5                   & Southwest                & 1,15                          \\
+    6                   & West                     & 1,35     \\
+    \hline
+\end{tabular}
+\end{table}
+
+\subsection{PRODUCTION COSTS AND CAPACITIES}
+
+The production variable costs at existing plants vary by location.
+This variance results from labor rate differences, volume purchases of raw materials, and inbound transport cost differences due to the proximity of the plants to major raw materials sources.
+These costs are listed next (Table \ref{tab:tableb-enunciado}).
+
+\begin{table}[!h]
+    \centering
+    \caption{Production Costs at Existing Plants}
+    \label{tab:tableb-enunciado}
+    \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Plant} & \textbf{Variable production cost} \\
+    Covington, KY  & 21,0                              \\
+    New York, NY   & 19,9                              \\
+    Arlington, TX  & 21,6                              \\
+    Long Beach, CA & 21,1                              \\
+    \hline
+\end{tabular}
+\end{table}
+
+The potential plant at Chicago has an estimated cost of \$21.0 per cwt.;
+and the Memphis plant has a cost of \$20.6 per cwt.
+Expansion at any existing plant site would have the current variable cost.
+Fixed costs are not included for existing plants because these are sunk costs.
+However, to construct a new plant or expand an existing one would cost a minimum of \$4 million.
+This cost would result in an output for the plant (or an output increase in the case of a plant addition) of up to 1 million cwt. per year for the near future.
+
+According to current distribution patterns, the existing plants are producing, relative to throughput capacity (in cwt.), at the following rates (Table \ref{tab:tablec-enunciado}):
+
+\begin{table}[!h]
+    \centering
+    \caption{Current Production Rates} \label{tab:tablec-enunciado}
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \makecell{\textbf{Plant}} &
+        \makecell{\textbf{Current capacity} \\ \textbf{(cwt.)}} &
+        \makecell{\textbf{Current Production} \\ \textbf{(cwt.)}} &
+        \makecell{\textbf{Percent of} \\ \textbf{Capacity}} \\
+        \hline
+        Covington, KY  & 620000                           & 595102                             & 96\%                         \\
+        New York, NY   & 430000                           & 390876                             & 91\%                         \\
+        Arlington, TX  & 300000                           & 249662                             & 83\%                         \\
+        Long Beach, CA & 280000                           & 241386                             & 86\%                         \\
+        \textbf{Total} & \textbf{1630000}                 & \textbf{1477026}                   & \textbf{91\%}                \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{WAREHOUSING RATES AND CAPACITIES}
+
+Company contracts with public warehousemen show that rates are categorized as storage, handling, and acessorial.
+Storage rates are quoted on a \$/cwt./month basis of average inventory held.
+Handling charges are incurred whenever in or out movement of the product occurs and are assessed on a \$/cwt. basis.
+Acessorial charges are for a number of services, such as bill of lading preparation, local delivery, and stock status reporting.
+Similar charges are estimated for the four plant warehouses as a fair share of production operations.
+
+Also associated with warehousing are the stock replenishment costs.
+These are costs for preparing the paperwork for normal replenishment and the expediting of stock into the warehouse.
+Stock order costs as well as customer order costs are computed by multiplying the average cost per order by the average number of orders for the warehouse.
+
+The warehouse-related costs and other associated information are given in Table 3.
+Costs for existing points are taken from company records.
+Those for potential warehouses are determined from quotas by warehousemen in the appropriate cities.
+Estimates are made of costs where such information is not otherwise available.
+
+There are no effective capacity limits on public warehousing.
+Usemore's space need is a small fraction of a public warehouseman's total capacity.
+On the other hand, a throughput of at least 10,400 cwt. per year, or a replenishment truckload every two weeks, is the desired minimum throughput needed to open a warehouse.
+Available space is limited at the four current plant sites.
+The stocking limits in terms of throughput at Covington = 450,000 cwt., New York = 380,000 cwt., Arlington = 140,000 cwt., and Long Beach = 180,000 cwt.
+
+\subsection{TRANSPORTATION COSTS}
+
+Three general transportation cost types are important to Usemore: inbound, outbound, and local delivery transport charges.
+Inbound transportation costs to a warehouse depend on the volume shipped and the distance between plant and warehouse.
+A sampling of truck common carrier rates at various distances from the plants for full truckload shipments shows that the transport rate between a plant and warehouse (P-W) can be reasonably approximated by a linear function.
+That is, the truckload rate is
+
+\begin{equation}
+    \text{P-W rate (\$/cwt.)} = 0.92 + 0.0034 \cdot d \quad \text{(miles)}
+\end{equation}
+
+where $d$ is the distance between two points (For simplicity, one aggregated relationship is shown.
+In practice, several such relationships would be used to reflect the rate difference caused by geographic locations of the shipment origin points).
+Total inbound transport costs are determined by multiplying the P-W rate by the volume assigned to flow between the plant and warehouse.
+
+Warehouse outbound transport costs depend on the distance that a customer is from the warehouse.
+If the customer is roughly within 30 miles of the warehouse, local cartage rates generally apply.
+These local delivery rates are shown by warehouse in Table \ref{tab:tab3-enunciado}
+For distances greater than 30 miles, a linear function similar to that for the inbound rates can be developed.
+Given the average shipment size from the warehouses of approximately 1,000 pounds, the
+warehouse to customer (W-C) rate function is
+
+\begin{equation}
+    \text{W-C rate (\$/cwt.)} = 5.45 + 0.0037 \cdot d \quad \text{(miles)}
+\end{equation}
+
+Computation of total warehouse outbound transport costs is carried out in the same manner as for inbound transport costs.
+
+\begin{table}[]
+    \centering
+    \caption{Stocking Point Rate and Order Size Information}\label{tab:tab3-enunciado}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    \makecell{\textbf{Warehouse} \\ \textbf{No.}} &
+    \makecell{\textbf{Storage} \\ (\$/cwt)} &
+    \makecell{\textbf{Handling} \\ (\$/cwt)} &
+    \makecell{\textbf{Stock Order} \\ \textbf{Processing} \\ (\$/order)} &
+    \makecell{\textbf{Stock Order} \\ \textbf{Size} \\ (cwt/order)} &
+    \makecell{\textbf{Customer Order} \\ \textbf{Processing} \\ (\$/order)} &
+    \makecell{\textbf{Customer Order} \\ \textbf{Size} \\ (cwt/order)} &
+    \makecell{\textbf{Local delivery} \\ \textbf{rate} \\ (\$/cwt)} \\
+    \hline
+    1                        & 0,0672                 & 0,46                       & 18                                         & 400                       & 1,79                                            & 9,05                                     & 1,9                                   \\
+    2                        & 0,0567                 & 0,54                       & 18                                         & 400                       & 1,74                                            & 10,92                                    & 3,89                                  \\
+    3                        & 0,0755                 & 0,38                       & 18                                         & 400                       & 2,71                                            & 11,59                                    & 2,02                                  \\
+    4                        & 0,0735                 & 0,59                       & 18                                         & 400                       & 1,74                                            & 11,3                                     & 4,31                                  \\
+    \textbf{5}               & \textbf{0,0946}        & \textbf{0,5}               & \textbf{18}                                & 401                       & 0,83                                            & 9,31                                     & 1,89                                  \\
+    6                        & 0,1802                 & 0,75                       & 18                                         & 405                       & 3,21                                            & 9                                        & 4,7                                   \\
+    7                        & 0,0946                 & 0,74                       & 18                                         & 405                       & 1,23                                            & 8,37                                     & 1,55                                  \\
+    8                        & 0,2072                 & 1,14                       & 18                                         & 405                       & 1,83                                            & 13,46                                    & 1,79                                  \\
+    9                        & 0,1802                 & 1,62                       & 18                                         & 409                       & 4,83                                            & 9,69                                     & 4,92                                  \\
+    10                       & 0,1442                 & 1,14                       & 18                                         & 410                       & 2,74                                            & 8,28                                     & 2,23                                  \\
+    11                       & 0,0946                 & 1,04                       & 18                                         & 409                       & 3,93                                            & 10,2                                     & 1,81                                  \\
+    12                       & 0,1982                 & 1,06                       & 18                                         & 410                       & 3,18                                            & 15                                       & 1                                     \\
+    13                       & 0,0766                 & 1,06                       & 18                                         & 400                       & 1,08                                            & 9,07                                     & 1,63                                  \\
+    14                       & 0,1262                 & 1,22                       & 18                                         & 423                       & 1,56                                            & 11,72                                    & 1,17                                  \\
+    15                       & 0,1126                 & 0,82                       & 18                                         & 426                       & 1,2                                             & 9,35                                     & 1,73                                  \\
+    16                       & 0,991                  & 0,64                       & 18                                         & 433                       & 1,78                                            & 8,7                                      & 0,5                                   \\
+    17                       & 0,1577                 & 0,71                       & 18                                         & 394                       & 5,33                                            & 8,07                                     & 1,46                                  \\
+    18                       & 0,1307                 & 0,79                       & 18                                         & 398                       & 0,91                                            & 7,66                                     & 2,29                                  \\
+    19                       & 0,1487                 & 1,15                       & 18                                         & 399                       & 2,08                                            & 9,39                                     & 2,2                                   \\
+    20                       & 0,2253                 & 0,8                        & 18                                         & 490                       & 1,1                                             & 7,31                                     & 1,49                                  \\
+    21                       & 0,137                  & 1,39                       & 18                                         & 655                       & 1,7                                             & 9,31                                     & 2,72                                  \\
+    22                       & 0,0991                 & 0,83                       & 18                                         & 400                       & 2,46                                            & 10,14                                    & 4,17                                  \\
+    23                       & 0,126                  & 0,59                       & 18                                         & 110                       & 2,33                                            & 5,07                                     & 2,37                                  \\
+    24                       & 0,0637                 & 0,45                       & 18                                         & 134                       & 1,88                                            & 6,8                                      & 1,36                                  \\
+    25                       & 0,0946                 & 1,68                       & 18                                         & 341                       & 2,58                                            & 6,83                                     & 2,21                                  \\
+    26                       & 0,1216                 & 0,88                       & 18                                         & 149                       & 1,83                                            & 14,32                                    & 0,8                                   \\
+    27                       & 0,0721                 & 0,55                       & 18                                         & 198                       & 1,83                                            & 7,38                                     & 3,88                                  \\
+    28                       & 0,1532                 & 0,8                        & 18                                         & 420                       & 1,58                                            & 9,7                                      & 2,14                                  \\
+    29                       & 0,1172                 & 1,04                       & 18                                         & 287                       & 0,78                                            & 7,52                                     & 1,51                                  \\
+    30                       & 0,108                  & 1,46                       & 18                                         & 408                       & 5,33                                            & 11,46                                    & 1,7                                   \\
+    31                       & 0,1487                 & 0,95                       & 18                                         & 340                       & 1,36                                            & 10,48                                    & 1,63                                  \\
+    32                       & 0,1352                 & 0,69                       & 18                                         & 333                       & 1,5                                             & 6,67                                     & 1,66                                  \\
+    33                       & 0,1126                 & 0,64                       & 18                                         & 277                       & 2,33                                            & 11,98                                    & 1,54                                  \\
+    34                       & 0,1712                 & 1,35                       & 18                                         & 398                       & 0,93                                            & 10,13                                    & 1,84                                  \\
+    35                       & 0,1261                 & 0,79                       & 18                                         & 434                       & 2,08                                            & 6,81                                     & 1,58                                  \\
+    36                       & 0,1352                 & 0,8                        & 18                                         & 323                       & 0,88                                            & 7,67                                     & 1,93                                  \\
+    37                       & 0,2704                 & 0,96                       & 18                                         & 423                       & 0,89                                            & 8,57                                     & 3,08                                  \\
+    38                       & 0,225                  & 0,8                        & 18                                         & 425                       & 2,88                                            & 7,61                                     & 1,43                                  \\
+    39                       & 0,1487                 & 4,49                       & 18                                         & 400                       & 1,46                                            & 7,55                                     & 6,44                                  \\
+    40                       & 0,2073                 & 1,14                       & 18                                         & 400                       & 2,75                                            & 10,13                                    & 2,83                                  \\
+    41                       & 0,2073                 & 1,14                       & 18                                         & 400                       & 2,75                                            & 10,13                                    & 2,83                                  \\
+    42                       & 0,1802                 & 1,62                       & 18                                         & 400                       & 2,75                                            & 10,13                                    & 4,81                                  \\
+    43                       & 0,2613                 & 1,39                       & 18                                         & 400                       & 2,71                                            & 11,59                                    & 3,89                                  \\
+    44                       & 0,1396                 & 0,71                       & 18                                         & 400                       & 2,04                                            & 9,37                                     & 3,89                                  \\
+    45                       & 0,1036                 & 0,55                       & 18                                         & 400                       & 2,75                                            & 10,13                                    & 1,74                                  \\
+    46                       & 0,0946                 & 0,55                       & 18                                         & 400                       & 1,74                                            & 9,31                                     & 1,89                                  \\
+    47                       & 0,0682                 & 0,64                       & 18                                         & 400                       & 1,78                                            & 8,7                                      & 0,5                                   \\
+    48                       & 0,0682                 & 1,22                       & 18                                         & 400                       & 1,79                                            & 9,05                                     & 1,55 \\
+    \hline
+\end{tabular}%
+}
+\end{table}
+
+\subsection{INVENTORY COSTS}
+
+Inventory costs depend on the average inventory maintained at a warehouse and the inventory rate factors that apply to the inventory level.
+These rate factors include the cost of capital, personal property taxes, and insurance costs.
+The average inventory at a warehouse will vary by the demand on the warehouse and by the method used to control the inventory.
+A mathematical function to express inventory based on annual warehouse throughput is found by plotting the annual average inventory against annual throughput at each active stocking point.
+The resulting curve is shown in Figure \ref{fig:figure2Inventory}.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/enunciado/figura02.png}
+    \caption{The Inventory-to-Warehouse Throughput Relationship for the Usemore Soap Company}\label{fig:figure2Inventory}
+\end{figure}
+
+Knowing that the annual cost-to-carry-inventory rate is approximately 12 percent of the average product value of \$26 per cwt., the total cost to carry inventory at each warehouse is given by
+
+\begin{equation}
+    IC_{i} = (0.12)(26)(11.3 d_{i}^{0.58}) = 35.3 D_{i}^{0.58}
+\end{equation}
+
+where
+
+\begin{align*}
+    IC_{i} &= \text{inventory carrying cost at warehouse i (\$)} \\
+    D_{i}  &= \text{annual throughput at warehouse i (cwt)}
+\end{align*}
+
+\subsection{WAREHOUSE OPERATING COSTS}
+
+Warehouse operating costs refer to the combination of storage and handling costs incurred resulting from assigning demand to warehouses.
+Storage costs are computed by taking the storage rate and multiplying it by an estimate of the average inventory in the warehouse.
+Mathematically, this can be expressed as
+
+\begin{equation}
+    SC_{i} = SR_{i} \cdot (26) \cdot (11.3 D_{i}^{0.58})
+\end{equation}
+
+where
+
+\begin{align*}
+    SC_{i} &= \text{annual cost of stock at warehouse i (\$)} \\
+    SR_{i}  &= \text{storage rate from warehouse i from Table 4} \\
+    D_{i}   &= \text{annual demand throughput at warehouse i (cwt)}
+\end{align*}
+
+Handling costs are strictly a function of the warehouse throughput.
+They are determined by  the handling rate multiplied by the throughput, or
+
+\begin{equation}
+    HC_{i} = HR_{i} \cdot D_{i}
+\end{equation}
+
+where
+
+\begin{align*}
+    HC_{i}  &= \text{annual handling cost at warehouse i (\$)} \\
+    HR_{i}  &= \text{handling rate at warehouse i from Table 4}
+\end{align*}
+
+
+\subsection{ORDER-PROCESSING COSTS}
+
+Order-processing costs refer to the charges incurred in handling the paperwork associated with stock replenishment and customer orders.
+Both types of costs are computed for each warehouse in essentially the same way.
+That is, the order-processing rate is multiplied by the annual demand on the warehouse and the result divided by the order size.
+
+
+\subsection{TOTAL COSTS}
+
+The total costs for various production distribution configurations can be determined by summing all the relevant costs.
+For the Usemore Soap Company, these are production costs; warehouse
+operating costs (storage, handling, stock order processing, and customer order processing);
+transportation costs (warehouse inbound, outbound, and local delivery); and inventory-carrying costs.
+Changing the number and location of plants and warehouses will cause a
+change in the balance of these cost factors.
+For example, adding warehouses will typically reduce transportation costs but increase inventory costs, as well as affect customer service.
+Assessing the trade-offs between costs and customer service is at the heart of this problem type.
+The cost and customer service summaries for the current network design are shown in Tables \ref{tab:table4-enunciado} and \ref{tab:table5-enunciado}.
+At present, Usemore Soap is able to place 93 percent of its demand within 300 miles of warehouses for a total annual cost of
+\$42,112,463.
+
+
+\begin{table}[!h]
+    \caption{Benchmark Customer Service Profile}
+    \centering
+    \label{tab:table4-enunciado}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \makecell{\textbf{Warehouse to} \\ \textbf{customer distance}} &
+    \makecell{\textbf{Percent} \\ \textbf{of demand}} &
+    \makecell{\textbf{Cumulative} \\ \textbf{percent of demand}} &
+    \makecell{\textbf{Total demand} \\ \textbf{(cwt.)}} \\
+    \hline
+    0-100 mi.    & 56,40\% & 56,40\% & 833,043 \\
+    101-200      & 21,30\% & 77,70\% & 314,607 \\
+    201-300      & 15,70\% & 93,40\% & 231,893 \\
+    301-400      & 2,10\%  & 95,50\% & 31,018  \\
+    401-500      & 1,50\%  & 97\%    & 22,155  \\
+    501-600      & 0,50\%  & 97,50\% & 7,385   \\
+    601-700      & 2,00\%  & 99,50\% & 29,541  \\
+    701-800      & 0,50\%  & 100\%   & 7,384   \\
+    801-900      & 0\%     & 100\%   & 0       \\
+    901-1000     & 0\%     & 100\%   & 0       \\
+    $>$1000       & 0\%     & 100\%   & 0       \\
+                  & 100\%   &         & 1,477,026 \\
+    \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[!h]
+    \caption{Cost profile for the Current Distribution Network}
+    \label{tab:table5-enunciado}
+    \centering
+    \begin{tabular}{|l|r|}
+    \hline
+    \textbf{Cost Category}                   & \textbf{Cost} \\
+    \hline
+    Production                               & \$ 30.761.520 \\
+    Warehouse operations                     & \$  1.578.379 \\
+    Order processing                         & \$    369.027 \\
+    Inventory carrying                       & \$    457.290 \\
+    Transportation - Inbound to warehouse    & \$  2.050.367 \\
+    Transportation - Outbound from warehouse & \$  6.895.880 \\
+    Total cost                               & \$ 42.112.463 \\
+    \hline
+\end{tabular}
+\end{table}
+
+
+\subsection{A COMPUTER-ASSISTED ANALYSIS}
+
+Although enough data have been provided to carry out an analysis manually, a computer program (WARELOCA, a module in LOGWARE) accompanies this case study.
+Given a particular combination of plants, plant capacities, customer service constraints, and warehouses, the program optimally assigns demand centers to warehouses and warehouses to plants by means of linear programming.
+From the selected list of warehouses, the least expensive will be chosen if more than one choice is available within the prescribed service distance from a demand center.
+If a warehouse cannot be found within the service distance, the warehouse closest to the demand center will be selected.
+Only linear variable costs are used in the allocation of demand centers to warehouses.
+Storage and capital costs, which are nonlinear, are not used in the allocation process.
+They are included in the system costs for a particular configuration.
+Fixed costs are neither included in the allocation, nor are they shown in the total system costs.
+They must be externally added to system costs.
+WARELOCA is a program in which you provide the plant locations and capacities, warehouse locations, customer service distance, and demand and cost levels.
+Each run of the program represents an evaluation of a particular network configuration.
+The results of a sample WARELOCA run in which the current network is approximated (not the true benchmark) where the existing 4 plants and 22 warehouses are evaluated are given in \color{red}Figure 3\color{black}.
+
+% TODO: incluir fotos da Figura 3, que provavelmente será inútil para o exercício
+
+\section{Solução}
+
+\subsection{1st Question}
+
+
+The first question is to determine the optimal number of plants and warehouses, both for the current and future scenarios.
+To address this, we formulate a Mixed-Integer Linear Programming (MILP) model, which is a classical facility location problem with additional constraints and cost structures.
+
+Conjuntos:
+
+\begin{itemize}
+    \item $\mathcal{P}$: Conjunto de plantas
+    \item $\mathcal{W}$: Conjunto de armazéns
+    \item $\mathcal{D}$: Conjunto de nós de demanda
+\end{itemize}
+
+Indices:
+
+\begin{itemize}
+    \item $p$: índice para plantas, onde $p \in \mathcal{P}$
+    \item $w$: índice para armazéns, onde $w \in \mathcal{W}$
+    \item $d$: índice para nós de demanda, onde $d \in \mathcal{D}$
+\end{itemize}
+
+% TODO: e se tiver que fechar armazéns atuais?
+
+Variáveis de decisão:
+
+\begin{itemize}
+    % Binárias
+    \item $z_{w}$: 1 se o armazém $w$ será utilizado e 0 caso contrário
+    % Contínuas
+    \item $x_{pw}$: quantidade de produto que será enviada da planta $p$ para o armazém $w$
+    \item $y_{wd}$: quantidade de produto que será enviada do armazém $w$ para o nó de demanda $d$
+    \item $w_{pd}$: quantidade de produto que será enviada diretamente da planta $p$ para o nó de demanda $d$ (envio direto da fábrica para o cliente)
+\end{itemize}
+
+Parâmetros:
+
+\begin{itemize}
+    \item $|P|$: número de plantas (para o nosso caso são atualmente 4 e possivelmente 6)
+    \item $|W|$: número de armazéns (para o nosso caso são 48)
+    \item $|D|$: número de nós de demanda (para o nosso caso são 48)
+    \item $S_d$: demanda (\textit{sales}) total do nó de demanda $d$
+    \item $c^{in}_{pw}$: custo de transporte da planta $p$ para o armazém $w$
+    \item $c^{out}_{wd}$: custo de transporte do armazém $w$ para o nó de demanda $d$
+    \item $c^{out'}_{pd}$: custo de transporte da planta $p$ para o nó de demanda $d$
+    \item $\rho_{p}$: Custo variável de produção de cada planta $p$
+    \item $C_{p}$: Capacidade de produção da planta $p$
+    \item $C'_{p}$: Capacidade de estocagem da planta $p$ (para as cargas fracionadas que vão direto para o destino)
+    \item $\tau_{w}$: Custo de estocagem do armazém $w$ (tabela 3)
+    \item $\epsilon_{w}$: Custo de handling do armazém $w$ (tabela 3)
+    \item $\gamma_{w}$: Stock Order Processing (\$/order) (tabela 3)
+    \item $\delta_{w}$: Stock Order Size do armazém $w$ (cwt/order) (tabela 3)
+    \item $\phi_{w}$: Customer Order Processing (\$/order) (tabela 3)
+    \item $\omega_{w}$: Customer Order size (cwt/order) (tabela 3)
+    \item $\Gamma$: Valor de uma cwt do produto, medido em \$ (dividimos a venda total pela demanda total, obtendo 108.33)
+\end{itemize}
+
+Função objetivo:
+
+% Custo de transporte das plantas para os armazéns
+% Custo de transporte dos armazéns para os clientes
+% Custo de transporte das fábricas para os clientes
+% TODO: Custo de manutenção do estoque (passa a ser um custo fixo...)
+% Custo variável de produção
+
+\begin{align}
+    \text{Min} \quad
+    & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} c^{in}_{pw} \cdot x_{pw} \quad +
+    && \text{(das fábricas para os armazéns)} \notag \\
+    & \sum_{w \in \mathcal{W}} \sum_{d \in \mathcal{D}} c^{out}_{wd} \cdot y_{wd} \quad +
+    && \text{(dos armazéns para os clientes)} \notag \\
+    & \sum_{p \in \mathcal{P}} \sum_{d \in \mathcal{D}} c^{out'}_{pd} \cdot w_{pd} \quad +
+    && \text{(das fábricas para os clientes)} \notag \\
+    & \sum_{p \in \mathcal{P}} \rho_{p} \left(
+        \sum_{p \in \mathcal{P}} x_{pw} + \sum_{d \in \mathcal{D}} w_{pd}
+    \right) \quad +
+    && \text{(custo variável de produção)} \notag \\
+    & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} x_{pw} \cdot \Gamma \cdot \tau_{w} \cdot z_{w} \quad +
+    && \text{(custo de estocagem nos armazéns)} \notag \\
+    & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} 2 \cdot z_{w} \cdot \epsilon_{w} \cdot x_{pw} \quad +
+    && \text{(custo de handling nos armazéns)} \notag \\
+    % Stock Order costs
+    & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} \left(
+        x_{pw} \cdot \frac{\gamma_{w}}{\delta_{w}} \cdot z_{w}
+        \right) \quad +
+    && \text{(custo de processamento do pedido de estoque)} \notag \\
+    % Customer Order costs
+    & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} \left(
+        y_{wd} \cdot \frac{\phi_{w}}{\omega_{w}} \cdot z_{w}
+        \right)
+    && \text{(custo de processamento do pedido do cliente)} \notag \\
+\end{align}
+
+Sujeito a: % (Restrições)
+
+\begin{equation} % Demanda total deve ser atendida
+    \sum_{w \in \mathcal{W}} y_{wd} +
+    \sum_{p \in \mathcal{P}} w_{pd} =
+    S_d, \quad
+    \forall d \in \mathcal{D}
+\end{equation}
+
+
+\begin{equation} % Capacidade das plantas (obs.: talvez multiplicar por 0.8 pra ter uma folga)
+    \sum_{w \in \mathcal{W}} x_{pw} +
+    \sum_{d \in \mathcal{D}} w_{pd}
+    \leq C_p, \quad
+    \forall p \in \mathcal{P}
+\end{equation}
+
+\begin{equation} % Cada armazém aberto precisa ter no mínimo 10400 cwt para ser viável
+    \sum_{w \in \mathcal{W}} y_{wd}
+    \geq 10400 \cdot z_{w}, \quad
+    \forall w \in \mathcal{W}
+\end{equation}
+
+% TODO: cuidado com conversão entre libras e cwt
+
+\begin{equation} % limite de estoque de cada planta (para as cargas fracionadas que vão direto para o destino)
+    \sum_{d \in \mathcal{D}} u_{pd} \cdot w_{pd} \leq C'_p \quad \forall p \in \mathcal{P}
+\end{equation}
+
+\begin{equation}% Expressão para u_{pd}:
+    u_{pd} =
+    \begin{cases}
+        1, & \text{se } 0 \leq w_{pd} \leq 100 \\
+        0, & \text{caso contrário}
+    \end{cases}
+\end{equation}
+
+
+\begin{equation} % Balanço de massa do armazém
+    \sum_{p \in \mathcal{P}} x_{pw} =
+    \sum_{d \in \mathcal{D}} y_{wd}, \quad
+    \forall w \in \mathcal{W}
+\end{equation}
+
+Espaço das variáveis:
+
+\begin{itemize}
+    \item $x_{pw} \in \mathbb{R}^+$
+    \item $y_{wd} \in \mathbb{R}^+$
+    \item $w_{pd} \in \mathbb{R}^+$
+    \item $z_{w} \in \{0, 1\}$
+    \item $u_{pd} \in \{0, 1\}$
+\end{itemize}
+
+
+% (vamos deixar de fora) limite de distancia de atendimento (no máximo 300 milhas)
+
+
+\subsection{2nd Question}
+
+
+\subsection{3rd Question}
+
+
+\subsection{4th Question}
+
+
+\subsection{5th Question}
+
+
+\subsection{6th Question}
+
+
+\end{document}
+
