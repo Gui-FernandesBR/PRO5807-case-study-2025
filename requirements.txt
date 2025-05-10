@@ -1,0 +1,8 @@
+jupyter
+ipykernel
+# I'm using Python 3.11 and gurobipy 11.0, this was because my license is for 11.0
+gurobipy==11.0.3
+numpy
+pandas
+openpyxl
+ruff
