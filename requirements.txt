@@ -5,4 +5,7 @@ gurobipy==11.0.3
 numpy
 pandas
 openpyxl
+geopy
+
+# Dev
 ruff
