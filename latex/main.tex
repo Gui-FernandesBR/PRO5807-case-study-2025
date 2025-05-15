@@ -587,6 +587,11 @@ Variáveis de decisão:
     \item $w_{pd}$: quantidade de produto que será enviada diretamente da planta $p$ para o nó de demanda $d$ (envio direto da fábrica para o cliente)
 \end{itemize}
 
+Variáveis auxiliares:
+\begin{itemize}
+    \item $u_{pd}$: se a quantidade de produto que será enviada diretamente da planta $p$ para o nó de demanda $d$ está entre 0 e 100
+\end{itemize}
+
 Parâmetros:
 
 \begin{itemize}
@@ -663,7 +668,7 @@ Sujeito a: % (Restrições)
 \end{equation}
 
 \begin{equation} % Cada armazém aberto precisa ter no mínimo 10400 cwt para ser viável
-    \sum_{w \in \mathcal{W}} y_{wd}
+    \sum_{d \in \mathcal{D}} y_{wd}
     \geq 10400 \cdot z_{w}, \quad
     \forall w \in \mathcal{W}
 \end{equation}
@@ -679,7 +684,7 @@ Sujeito a: % (Restrições)
     \begin{cases}
         1, & \text{se } 0 \leq w_{pd} \leq 100 \\
         0, & \text{caso contrário}
-    \end{cases}
+    \end{cases}, \quad \forall p \in \mathcal{P}, \forall d \in \mathcal{D}
 \end{equation}
 
 
