@@ -1,10 +1,11 @@
+# PRO5807 Case Study (2025)
 
+## installation
 
-# installation
-
+- Install git and git-lfs
 - Install vscode
 - Install python (recommended version 3.13 or higher)
-- Install Gurobi and activate a license
+- Install Gurobi and activate a license (see https://support.gurobi.com/hc/en-us/articles/360013195212-Which-Python-versions-are-supported-by-Gurobi)
 - Open this repo on vscode
 - Create a virtual environment
 
@@ -27,4 +28,9 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-- Run the `modelo-gurobi.py` file
+- Run the `notebook/modelo-gurobi.ipynb` file
+- Before committing, please run the `make format` command to format the code
+
+## Caveats
+
+- The `latex/main.tex` file is responsible for generating the PDF report. If you prefer you can upload the whole \`
