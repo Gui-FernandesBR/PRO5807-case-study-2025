@@ -1,11 +1,19 @@
+# Jupyter Notebook
 jupyter
 ipykernel
+
 # I'm using Python 3.11 and gurobipy 11.0, this was because my license is for 11.0
 gurobipy==11.0.3
+
+# Data manipulation
 numpy
 pandas
 openpyxl
+
+# Distances, Maps and visualization
 geopy
+folium
+geopandas
 
 # Dev
 ruff
