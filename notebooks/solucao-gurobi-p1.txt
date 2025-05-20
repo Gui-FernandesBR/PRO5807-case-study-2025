@@ -1,0 +1,144 @@
+Modelo: UsemoreWarehousing P1 (Baseline Atual)
+Número de plantas: 4
+Número de armazéns públicos: 18
+Data: 2025-05-18 21:38:19
+Custo total: $44075426.99
+Custo de transporte (inbound): $1455796.95
+Custo de transporte (outbound): $8902054.22
+Custo de produção: $30678860.60
+Custo de estocagem: $374333.90
+Custo de handling: $1887934.30
+Custo de processamento de pedidos: $65614.38
+Custo de processamento de pedidos do cliente: $334415.75
+Custo de manutenção de estoque (inventory): $376416.90
+
+Nível de serviço (30 milhas): 1.31%
+Nível de serviço (100 milhas): 34.25%
+Nível de serviço (300 milhas): 93.00%
+Nível de serviço (600 milhas): 96.73%
+Nível de serviço (1000 milhas): 99.27%
+Nível de serviço (1500 milhas): 100.00%
+
+Produção:
+  Covington: 620000.0 cwt (100.00% da capacidade)
+  New York: 430000.0 cwt (100.00% da capacidade)
+  Arlington: 183224.0 cwt (61.07% da capacidade)
+  Long Beach: 243802.0 cwt (87.07% da capacidade)
+
+
+Armazéns abertos:
+  Covington:	270451.8 cwt
+  New York:	337971.0 cwt
+  Arlington:	136645.0 cwt
+  Long Beach:	180000.0 cwt
+  Atlanta:	51074.0 cwt
+  Boston:	15829.0 cwt
+  Davenport:	37102.2 cwt
+  Detroit:	105181.0 cwt
+  Greensboro:	28348.0 cwt
+  Kansas City:	46579.0 cwt
+  Baltimore:	36951.0 cwt
+  Memphis:	10400.0 cwt
+  Milwaukee:	110287.0 cwt
+  Orlando:	46405.0 cwt
+  Portland:	63802.0 cwt
+
+
+Volume das plantas para os armazéns:
+  Covington:
+    Covington: 270451.8 cwt
+    Atlanta: 51074.0 cwt
+    Davenport: 37102.2 cwt
+    Detroit: 105181.0 cwt
+    Memphis: 10400.0 cwt
+    Milwaukee: 110287.0 cwt
+    Orlando: 35504.0 cwt
+  New York:
+    New York: 337971.0 cwt
+    Boston: 15829.0 cwt
+    Greensboro: 28348.0 cwt
+    Baltimore: 36951.0 cwt
+    Orlando: 10901.0 cwt
+  Arlington:
+    Arlington: 136645.0 cwt
+    Kansas City: 46579.0 cwt
+  Long Beach:
+    Long Beach: 180000.0 cwt
+    Portland: 63802.0 cwt
+
+Volume dos armazéns para os centros de demanda:
+  Covington:
+    ND: 5703.0 cwt
+    MN: 5633.0 cwt
+    MO: 4481.8 cwt
+    IN: 43994.0 cwt
+    KY: 3870.0 cwt
+    OH: 155123.0 cwt
+    WV: 9168.0 cwt
+    TN: 42479.0 cwt
+  New York:
+    NH: 4546.0 cwt
+    RI: 17000.0 cwt
+    NJ: 21154.0 cwt
+    NY: 160917.0 cwt
+    PA: 65108.0 cwt
+    CT: 26187.0 cwt
+    MA: 37087.0 cwt
+    VT: 2928.0 cwt
+    DE: 3044.0 cwt
+  Arlington:
+    MT: 1228.0 cwt
+    WY: 1004.0 cwt
+    CO: 11147.0 cwt
+    SD: 1049.0 cwt
+    NM: 3536.0 cwt
+    TX: 80438.0 cwt
+    OK: 13517.0 cwt
+    AR: 4910.0 cwt
+    LA: 15011.0 cwt
+    MS: 4805.0 cwt
+  Long Beach:
+    CA: 135116.0 cwt
+    NV: 16755.0 cwt
+    AZ: 9063.0 cwt
+    ID: 7153.0 cwt
+    UT: 9001.0 cwt
+    MT: 2912.0 cwt
+  Atlanta:
+    AL: 15835.0 cwt
+    GA: 29559.0 cwt
+    SC: 5680.0 cwt
+  Boston:
+    ME: 15829.0 cwt
+  Buffalo:
+  Chicago:
+  Cleveland:
+  Davenport:
+    IA: 32175.0 cwt
+    MO: 4927.2 cwt
+  Detroit:
+    MI: 105181.0 cwt
+  Grand Rapids:
+  Greensboro:
+    NC: 28348.0 cwt
+  Kansas City:
+    NE: 7347.0 cwt
+    KS: 6961.0 cwt
+    MO: 32271.0 cwt
+  Baltimore:
+    VA: 17667.0 cwt
+    MD: 19284.0 cwt
+  Memphis:
+    MS: 10400.0 cwt
+  Milwaukee:
+    WI: 37448.0 cwt
+    IL: 72839.0 cwt
+  Orlando:
+    FL: 46405.0 cwt
+  Pittsburgh:
+  Portland:
+    WA: 32437.0 cwt
+    OR: 31365.0 cwt
+  W Sacramento:
+  W Chester:
+
