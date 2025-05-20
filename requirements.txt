@@ -14,6 +14,8 @@ openpyxl
 geopy
 folium
 geopandas
+cartopy
+matplotlib_scalebar
 
 # Dev
 ruff

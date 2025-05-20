@@ -13,6 +13,7 @@
 \onehalfspacing
 
 % Fonts and formatting
+\usepackage{longtable}
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
@@ -558,20 +559,34 @@ The results of a sample WARELOCA run in which the current network is approximate
 The first question is to determine the optimal number of plants and warehouses, both for the current and future scenarios.
 To address this, we formulate a Mixed-Integer Linear Programming (MILP) model, which is a classical facility location problem with additional constraints and cost structures.
 
+
+a
+
+b
+
 Conjuntos:
 
 \begin{itemize}
-    \item $\mathcal{P}$: Conjunto de plantas
-    \item $\mathcal{W}$: Conjunto de armazéns
+    \item $\mathcal{P}^{a}$: Conjunto de plantas atuais
+    \item $\mathcal{P}^{p}$: Conjunto de plantas potenciais
+    \item $\mathcal{P}$: Conjunto de plantas. $\mathcal{P} = \mathcal{P}^{a} \cup \mathcal{P}^{p}$
+    \item $\mathcal{W}^{a}$: Conjunto de armazéns atual
+    \item $\mathcal{W}^{p}$: Conjunto de armazéns potenciais
+    \item $\mathcal{W}$: Conjunto de armazéns. $\mathcal{W} = \mathcal{W}^{a} \cup \mathcal{W}^{p}$
     \item $\mathcal{D}$: Conjunto de nós de demanda
 \end{itemize}
 
 Indices:
 
+% \begin{itemize}
+%     \item $p$: índice para plantas, onde $p \in \mathcal{P}$
+%     \item $w$: índice para armazéns, onde $w \in \mathcal{W}$
+%     \item $d$: índice para nós de demanda, onde $d \in \mathcal{D}$
+% \end{itemize}
 \begin{itemize}
-    \item $p$: índice para plantas, onde $p \in \mathcal{P}$
-    \item $w$: índice para armazéns, onde $w \in \mathcal{W}$
-    \item $d$: índice para nós de demanda, onde $d \in \mathcal{D}$
+    \item $p$: índice para plantas
+    \item $w$: índice para armazéns
+    \item $d$: índice para nós de demanda
 \end{itemize}
 
 % TODO: e se tiver que fechar armazéns atuais?
@@ -580,41 +595,77 @@ Variáveis de decisão:
 
 \begin{itemize}
     % Binárias
-    \item $z_{w}$: 1 se o armazém $w$ será utilizado e 0 caso contrário
+    \item $z_{w}$: 1 se o armazém $w$ será utilizado e 0 caso contrário, onde $w \in \mathcal{W}^{a}$
     % Contínuas
-    \item $x_{pw}$: quantidade de produto que será enviada da planta $p$ para o armazém $w$
-    \item $y_{wd}$: quantidade de produto que será enviada do armazém $w$ para o nó de demanda $d$
-    \item $w_{pd}$: quantidade de produto que será enviada diretamente da planta $p$ para o nó de demanda $d$ (envio direto da fábrica para o cliente)
+    \item $x_{pw}$: quantidade de produto que será enviada da planta $p$, $p \in \mathcal{P}^{a}$ para o armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$
+    \item $y_{wd}$: quantidade de produto que será enviada do armazém (ou fábrica) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$ para o nó de demanda $d$, $d \in \mathcal{D}$
 \end{itemize}
 
-Variáveis auxiliares:
-\begin{itemize}
-    \item $u_{pd}$: se a quantidade de produto que será enviada diretamente da planta $p$ para o nó de demanda $d$ está entre 0 e 100
-\end{itemize}
+\begin{longtable}{p{0.1\textwidth} p{0.2\textwidth} p{0.6\textwidth} }
+    \caption{Parâmetros}\\
+    
+    \hline
+    \textbf{Símbolo} & \textbf{Unidades} & \textbf{Descrição} \\
+    \hline
+    \endfirsthead
+    
+    \multicolumn{3}{c}%
+    {{\tablename\ \thetable{} -- continued from previous page}} \\
+    \hline
+    \textbf{Símbolo} & \textbf{Unidades} & \textbf{Descrição} \\
+    \hline
+    \endhead
+    
+    \hline \multicolumn{3}{r}{{Continued on next page}} \\ 
+    \endfoot
+    
+    \hline
+    \endlastfoot
+    
 
-Parâmetros:
+    $S_d$ & cwt & Demanda total do nó de demanda $d$, $d \in \mathcal{D}$ \\
+    $d_{pw}$ & milhas & Distância entre a planta $p$, $p \in \mathcal{P}^{a}$ e o armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$ \\
+    $d_{wd}$ & milhas & Distância entre o armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$ e o nó de demanda $d$, $d \in \mathcal{D}$ \\
+    $\rho_{p}$ & \$/cwt & Custo variável de produção de cada planta $p$, $p \in \mathcal{P}^{a}$ \\
+    $C_{p}$ & cwt & Capacidade de produção da planta $p$, $p \in \mathcal{P}^{a}$ \\
+    $C'_{p}$ & cwt & Capacidade de estocagem da planta $p$, $p \in \mathcal{P}^{a}$ \\
+    $\tau_{w}$ & \$/cwt & Custo de estocagem do armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$ \\
+    $\epsilon_{w}$ & \$/cwt & Custo de handling do armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$ \\
+    $\gamma_{w}$ & \$/order & Stock Order Processing do armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$  \\
+    $\delta_{w}$ & cwt/order & Stock Order Size do armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$  \\
+    $\phi_{w}$ & \$/order & Customer Order Processing do armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$  \\
+    $\omega_{w}$ & cwt/order & Customer Order size do armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$  \\
+    
+\end{longtable}
 
-\begin{itemize}
-    \item $|P|$: número de plantas (para o nosso caso são atualmente 4 e possivelmente 6)
-    \item $|W|$: número de armazéns (para o nosso caso são 48)
-    \item $|D|$: número de nós de demanda (para o nosso caso são 48)
-    \item $S_d$: demanda (\textit{sales}) total do nó de demanda $d$
-    \item $c^{in}_{pw}$: custo de transporte da planta $p$ para o armazém $w$
-    \item $c^{out}_{wd}$: custo de transporte do armazém $w$ para o nó de demanda $d$
-    \item $c^{out'}_{pd}$: custo de transporte da planta $p$ para o nó de demanda $d$
-    \item $\rho_{p}$: Custo variável de produção de cada planta $p$
-    \item $C_{p}$: Capacidade de produção da planta $p$
-    \item $C'_{p}$: Capacidade de estocagem da planta $p$ (para as cargas fracionadas que vão direto para o destino)
-    \item $\tau_{w}$: Custo de estocagem do armazém $w$ (tabela 3)
-    \item $\epsilon_{w}$: Custo de handling do armazém $w$ (tabela 3)
-    \item $\gamma_{w}$: Stock Order Processing (\$/order) (tabela 3)
-    \item $\delta_{w}$: Stock Order Size do armazém $w$ (cwt/order) (tabela 3)
-    \item $\phi_{w}$: Customer Order Processing (\$/order) (tabela 3)
-    \item $\omega_{w}$: Customer Order size (cwt/order) (tabela 3)
-    \item $\Gamma$: Valor de uma cwt do produto, medido em \$ (dividimos a venda total pela demanda total, obtendo 108.33)
-\end{itemize}
+% Parâmetros:
 
-Função objetivo:
+% \begin{itemize}
+%     \item $S_d$: demanda (\textit{sales}) total do nó de demanda $d$
+%     \item $d_{pw}$: distância entre o a fábrica $p$, $p \in \mathcal{P}^{a}$ e o armazém (ou fábrica) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$
+%     \item $d_{wd}$: distância entre o armazém (ou fábrica) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$ e o nó de demanda $d$, $d \in \mathcal{D}$
+%     \item $\rho_{p}$: Custo variável de produção de cada planta $p$, $p \in \mathcal{P}^{a}$
+%     \item $C_{p}$: Capacidade de produção da planta $p$, $p \in \mathcal{P}^{a}$
+%     \item $C'_{p}$: Capacidade de estocagem da planta $p$, $p \in \mathcal{P}^{a}$
+%     \item $\tau_{w}$: Custo de estocagem do armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$ (tabela 3)
+%     \item $\epsilon_{w}$: Custo de handling do armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$ (tabela 3)
+%     \item $\gamma_{w}$: Stock Order Processing do armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$ (\$/order) (tabela 3)
+%     \item $\delta_{w}$: Stock Order Size do armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$ (cwt/order) (tabela 3)
+%     \item $\phi_{w}$: Customer Order Processing do armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$ (\$/order) (tabela 3)
+%     \item $\omega_{w}$: Customer Order size do armazém (ou planta) $w$, $w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}$ (cwt/order) (tabela 3)
+% \end{itemize}
+
+\begin{align*}
+    \min\; &\bigl(\text{Custo do movimento de produto das fábricas para os armazéns}\bigr)\notag\\
+           &+\bigl(\text{Custo do movimento de produto dos armazéns para os clientes}\bigr)\notag\\
+           &+\text{Custo Variável de produção}\notag\\
+           &+\text{Custo de estocagem nos armazéns}\notag\\
+           &+\text{Custo de inventário}\notag\\
+           &+\text{Custo de Handling nos armazéns}\notag\\
+           &+\text{Custo de processamento do pedido de estoque}\notag\\
+           &+\text{Custo de processamento do pedido do cliente}
+  \end{align*}
+  
 
 % Custo de transporte das plantas para os armazéns
 % Custo de transporte dos armazéns para os clientes
@@ -622,86 +673,211 @@ Função objetivo:
 % TODO: Custo de manutenção do estoque (passa a ser um custo fixo...)
 % Custo variável de produção
 
-\begin{align}
-    \text{Min} \quad
-    & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} c^{in}_{pw} \cdot x_{pw} \quad +
-    && \text{(das fábricas para os armazéns)} \notag \\
-    & \sum_{w \in \mathcal{W}} \sum_{d \in \mathcal{D}} c^{out}_{wd} \cdot y_{wd} \quad +
-    && \text{(dos armazéns para os clientes)} \notag \\
-    & \sum_{p \in \mathcal{P}} \sum_{d \in \mathcal{D}} c^{out'}_{pd} \cdot w_{pd} \quad +
-    && \text{(das fábricas para os clientes)} \notag \\
-    & \sum_{p \in \mathcal{P}} \rho_{p} \left(
-        \sum_{p \in \mathcal{P}} x_{pw} + \sum_{d \in \mathcal{D}} w_{pd}
-    \right) \quad +
-    && \text{(custo variável de produção)} \notag \\
-    & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} x_{pw} \cdot \Gamma \cdot \tau_{w} \cdot z_{w} \quad +
-    && \text{(custo de estocagem nos armazéns)} \notag \\
-    & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} 2 \cdot z_{w} \cdot \epsilon_{w} \cdot x_{pw} \quad +
-    && \text{(custo de handling nos armazéns)} \notag \\
-    % Stock Order costs
-    & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} \left(
-        x_{pw} \cdot \frac{\gamma_{w}}{\delta_{w}} \cdot z_{w}
-        \right) \quad +
-    && \text{(custo de processamento do pedido de estoque)} \notag \\
-    % Customer Order costs
-    & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} \left(
-        y_{wd} \cdot \frac{\phi_{w}}{\omega_{w}} \cdot z_{w}
-        \right)
-    && \text{(custo de processamento do pedido do cliente)} \notag \\
-\end{align}
+(Custo do movimento de produto das fábricas para os armazéns - ou fábricas)
+\begin{equation}
+\begin{cases}
+    \sum_{p \in \mathcal{P}^{a}} \sum_{w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}} c^{in}_{pw} \cdot x_{pw}, & \\
+    c^{in}_{pw} = 0.92 + 0.0034 \cdot d_{pw}, \quad \forall p \in \mathcal{P}^{a}, \forall w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}
+\end{cases}
+\end{equation}
+
+(Custo do movimento de produto dos armazéns - ou fábricas - para os clientes)
+\begin{equation}
+\begin{cases}
+    \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} c^{out}_{wd} \cdot x_{wd}, \\
+    c^{out}_{wd} = \begin{cases}
+        5.45 + 0.0037 \cdot d_{wd}, & \text{se } d_{wd} > 30\text{ milhas} \\
+        \text{Valor da tabela}, & \text{caso contrário}
+        \end{cases}, \quad \forall w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}, \forall d \in \mathcal{D}
+\end{cases}
+\end{equation}
+
+\begin{center}
+    (Custo Variável de produção)
+    \begin{equation}
+        \sum_{p \in \mathcal{P}^{a}} \sum_{w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}} \rho_{p} \cdot x_{pw}, \quad
+    \end{equation}
+\end{center}
+
+\begin{center}
+    (Custo de estocagem nos armazéns)
+    \begin{equation}
+        \sum_{w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}} 26 \cdot 11.3 \cdot (\sum_{d \in \mathcal{D}} y_{wd})^{0.58} \cdot \tau_{w}
+    \end{equation}
+\end{center}
+
+\begin{center}
+    (Custo de inventório)
+    \begin{equation}
+        \sum_{w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}} 26 \cdot 0.12 \cdot 11.3 \cdot (\sum_{d \in \mathcal{D}} y_{wd})^{0.58}
+    \end{equation}
+\end{center}
+
+\begin{center}
+    (Custo de Handling nos armazéns - ou fábricas)
+    \begin{equation}
+        \sum_{p \in \mathcal{P}^{a}} \sum_{w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}} 2 \cdot z_{w} \cdot \epsilon_{w} \cdot x_{pw}
+    \end{equation}
+\end{center}
+
+\begin{center}
+    (Custo de processamento do pedido de estoque)
+    \begin{equation}
+        \sum_{p \in \mathcal{P}^{a}} \sum_{w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}} z_{w} \cdot x_{pw} \cdot \frac{\gamma_{w}}{\delta_{w}}
+    \end{equation}
+\end{center}
+
+\begin{center}
+    (Custo de processamento do pedido do cliente)
+    \begin{equation}
+        \sum_{w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}} \sum_{d \in \mathcal{D}} z_{w} \cdot y_{wd} \cdot \frac{\phi_{w}}{\omega_{w}}
+    \end{equation}
+\end{center}
+
+% \begin{align}
+%     \text{Min} \quad
+%     & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} c^{in}_{pw} \cdot x_{pw} \quad +
+%     && \text{(das fábricas para os armazéns)} \notag \\
+%     & \sum_{w \in \mathcal{W}} \sum_{d \in \mathcal{D}} c^{out}_{wd} \cdot y_{wd} \quad +
+%     && \text{(dos armazéns para os clientes)} \notag \\
+%     & \sum_{p \in \mathcal{P}} \sum_{d \in \mathcal{D}} c^{out'}_{pd} \cdot w_{pd} \quad +
+%     && \text{(das fábricas para os clientes)} \notag \\
+%     & \sum_{p \in \mathcal{P}} \rho_{p} \left(
+%         \sum_{p \in \mathcal{P}} x_{pw} + \sum_{d \in \mathcal{D}} w_{pd}
+%     \right) \quad +
+%     && \text{(custo variável de produção)} \notag \\
+%     & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} x_{pw} \cdot \Gamma \cdot \tau_{w} \cdot z_{w} \quad +
+%     && \text{(custo de estocagem nos armazéns)} \notag \\
+%     & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} 2 \cdot z_{w} \cdot \epsilon_{w} \cdot x_{pw} \quad +
+%     && \text{(custo de handling nos armazéns)} \notag \\
+%     % Stock Order costs
+%     & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} \left(
+%         x_{pw} \cdot \frac{\gamma_{w}}{\delta_{w}} \cdot z_{w}
+%         \right) \quad +
+%     && \text{(custo de processamento do pedido de estoque)} \notag \\
+%     % Customer Order costs
+%     & \sum_{p \in \mathcal{P}} \sum_{w \in \mathcal{W}} \left(
+%         y_{wd} \cdot \frac{\phi_{w}}{\omega_{w}} \cdot z_{w}
+%         \right)
+%     && \text{(custo de processamento do pedido do cliente)} \notag \\
+% \end{align}
 
 Sujeito a: % (Restrições)
 
-\begin{equation} % Demanda total deve ser atendida
-    \sum_{w \in \mathcal{W}} y_{wd} +
-    \sum_{p \in \mathcal{P}} w_{pd} =
-    S_d, \quad
-    \forall d \in \mathcal{D}
-\end{equation}
+\begin{center}
+    (Nível de serviço)
+
+    Seja $\mathcal{WP}$ um conjunto de pares ordenados de armazéns atuais (e plantas atuais) e nós de demanda,
+    onde a distância entre o armazém (ou fábrica) e o nó de demanda é menor ou igual a 300 milhas.
+    \begin{equation}
+        \frac{\sum_{(w, p) \in \mathcal{WP}} y_{wd}}{\sum_{d \in \mathcal{D}} S_d} \geq 0.93
+    \end{equation}
+\end{center}
+
+\begin{center}
+    (Satisfação da demanda)
+    \begin{equation}
+        \sum_{w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}} y_{wd} =
+        S_d, \quad
+        \forall d \in \mathcal{D}
+    \end{equation}
+\end{center}
+
+% \begin{equation} % Demanda total deve ser atendida
+%     \sum_{w \in \mathcal{W}} y_{wd} +
+%     \sum_{p \in \mathcal{P}} w_{pd} =
+%     S_d, \quad
+%     \forall d \in \mathcal{D}
+% \end{equation}
+
+\begin{center}
+    (Capacidade de produção das plantas)
+    \begin{equation}
+        \sum_{w \in \mathcal{W} \cup \mathcal{P}^{a}} x_{pw} \leq
+        C_p, \quad
+        \forall p \in \mathcal{P}
+    \end{equation}
+\end{center}
 
 
-\begin{equation} % Capacidade das plantas (obs.: talvez multiplicar por 0.8 pra ter uma folga)
-    \sum_{w \in \mathcal{W}} x_{pw} +
-    \sum_{d \in \mathcal{D}} w_{pd}
-    \leq C_p, \quad
-    \forall p \in \mathcal{P}
-\end{equation}
+% \begin{equation} % Capacidade das plantas (obs.: talvez multiplicar por 0.8 pra ter uma folga)
+%     \sum_{w \in \mathcal{W}} x_{pw} +
+%     \sum_{d \in \mathcal{D}} w_{pd}
+%     \leq C_p, \quad
+%     \forall p \in \mathcal{P}
+% \end{equation}
 
-\begin{equation} % Cada armazém aberto precisa ter no mínimo 10400 cwt para ser viável
-    \sum_{d \in \mathcal{D}} y_{wd}
-    \geq 10400 \cdot z_{w}, \quad
-    \forall w \in \mathcal{W}
-\end{equation}
+\begin{center}
+    (Limite mínimo do uso de cada armazém)
+    \begin{equation}
+        \sum_{d \in \mathcal{D}} y_{wd}
+        \geq 10400 \cdot z_{w}, \quad
+        \forall w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}
+    \end{equation}
+\end{center}
+
+% \begin{equation} % Cada armazém aberto precisa ter no mínimo 10400 cwt para ser viável
+%     \sum_{d \in \mathcal{D}} y_{wd}
+%     \geq 10400 \cdot z_{w}, \quad
+%     \forall w \in \mathcal{W}
+% \end{equation}
 
 % TODO: cuidado com conversão entre libras e cwt
+\begin{center}
+    (Limite de estoque dos armazéns das plantas)
+    \begin{equation} % limite de estoque de cada planta (para as cargas fracionadas que vão direto para o destino)
+        \sum_{p_2 \in \mathcal{P}^{a}} x_{p_{1}p_{2}} \leq C'_p \quad \forall p_1 \in \mathcal{P}^{a}
+    \end{equation}
+\end{center}
 
-\begin{equation} % limite de estoque de cada planta (para as cargas fracionadas que vão direto para o destino)
-    \sum_{d \in \mathcal{D}} u_{pd} \cdot w_{pd} \leq C'_p \quad \forall p \in \mathcal{P}
-\end{equation}
+% \begin{equation} % limite de estoque de cada planta (para as cargas fracionadas que vão direto para o destino)
+%     \sum_{d \in \mathcal{D}} u_{pd} \cdot w_{pd} \leq C'_p \quad \forall p \in \mathcal{P}
+% \end{equation}
 
-\begin{equation}% Expressão para u_{pd}:
-    u_{pd} =
-    \begin{cases}
-        1, & \text{se } 0 \leq w_{pd} \leq 100 \\
-        0, & \text{caso contrário}
-    \end{cases}, \quad \forall p \in \mathcal{P}, \forall d \in \mathcal{D}
-\end{equation}
+% \begin{equation}% Expressão para u_{pd}:
+%     u_{pd} =
+%     \begin{cases}
+%         1, & \text{se } 0 \leq w_{pd} \leq 100 \\
+%         0, & \text{caso contrário}
+%     \end{cases}, \quad \forall p \in \mathcal{P}, \forall d \in \mathcal{D}
+% \end{equation}
 
+\begin{center}
+    (Balanço de massa das fábricas)
+    \begin{equation} % Balanço de massa do armazém
+        \sum_{p \in \mathcal{P}^{a}} x_{pw} =
+        \sum_{d \in \mathcal{D}} y_{wd}, \quad
+        \forall w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}
+    \end{equation}
+\end{center}
 
-\begin{equation} % Balanço de massa do armazém
-    \sum_{p \in \mathcal{P}} x_{pw} =
-    \sum_{d \in \mathcal{D}} y_{wd}, \quad
-    \forall w \in \mathcal{W}
-\end{equation}
+\begin{center}
+    (Restrições para dar o valor correto de $z_{w}$)
+    \begin{equation}
+        M = \sum_{d \in \mathcal{D}} S_{d}
+    \end{equation}
+    \begin{equation}
+        x_{pw} \leq M \cdot z_w, \quad \forall w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}, \forall p \in \mathcal{P}^{a}
+    \end{equation}
+    \begin{equation}
+        y_{wd} \leq M \cdot z_w, \quad \forall w \in \mathcal{W}^{a} \cup \mathcal{P}^{a}, \forall d \in \mathcal{D}
+    \end{equation}
+\end{center}
+
+% \begin{equation} % Balanço de massa do armazém
+%     \sum_{p \in \mathcal{P}} x_{pw} =
+%     \sum_{d \in \mathcal{D}} y_{wd}, \quad
+%     \forall w \in \mathcal{W}
+% \end{equation}
 
 Espaço das variáveis:
 
 \begin{itemize}
     \item $x_{pw} \in \mathbb{R}^+$
     \item $y_{wd} \in \mathbb{R}^+$
-    \item $w_{pd} \in \mathbb{R}^+$
+    % \item $w_{pd} \in \mathbb{R}^+$
     \item $z_{w} \in \{0, 1\}$
-    \item $u_{pd} \in \{0, 1\}$
+    % \item $u_{pd} \in \{0, 1\}$
 \end{itemize}
 
 
@@ -711,6 +887,32 @@ Espaço das variáveis:
 \subsection{2nd Question}
 \cite{states_centers}
 \cite{ballou}
+
+{
+  \fontsize{28pt}{36pt}\selectfont
+  Usar $\mathcal{W}$ em vez de $\mathcal{W}^{a}$
+
+  Usar $\mathcal{P}$ em vez de $\mathcal{P}^{a}$
+
+
+  Adicionar variável:
+  $v_{p}, \forall p \in \mathcal{P}$: 1 se a planta $p$ será for
+  aumentada (ou construída) e 0 caso contrário
+}
+
+\begin{center}
+    (Custos de expansão - ou construção)
+    \begin{equation*}
+        4\,000\,000 \cdot \sum_{p \in \mathcal{P}} v_p
+    \end{equation*}
+\end{center}
+
+\begin{center}
+    (Restrições para dar o valor correto de $v_{p}$)
+    \begin{equation}
+        \sum_{w \in \mathcal{W} \cup \mathcal{P}} x_{pw} \leq C_q + v_p \cdot 1\,000\,000, \quad \forall p \in \mathcal{P}
+    \end{equation}
+\end{center}
 
 \subsection{3rd Question}
 
