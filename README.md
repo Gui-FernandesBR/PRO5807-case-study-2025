@@ -1,5 +1,7 @@
 # PRO5807 Case Study (2025)
 
+In this repo we solve the Usemore Soap Company case study from the Chapter 14 of the book "Supply Chain Management" by Ronald H. Ballou.
+
 ## installation
 
 - Install git and git-lfs
@@ -22,6 +24,13 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
+```bash
+# Windows
+.venv\Scripts\Activate.ps1
+# Linux
+source .venv/bin/activate
+```
+
 - Install the required packages
 
 ```bash
@@ -33,4 +42,5 @@ pip install -r requirements.txt
 
 ## Caveats
 
-- The `latex/main.tex` file is responsible for generating the PDF report. If you prefer you can upload the whole \`
+- The `latex/main.tex` file is responsible for generating the PDF report. If you prefer you can upload the whole `latex` folder to Overleaf and edit the document there.
+
