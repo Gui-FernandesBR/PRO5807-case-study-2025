@@ -11,4 +11,4 @@
 *.html linguist-language=ipynb
 
 # Ignore Jupyter Notebook files for linguist
-*.ipynb linguist-documentation
+# *.ipynb linguist-documentation
